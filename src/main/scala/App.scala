@@ -1,14 +1,18 @@
-object App {
+import cats.implicits._
+import com.monovore.decline._
 
-  def main(args: Array[String]): Unit = {
-    println("Starting...")
-    ArgsHandler.createApp(args) match {
-      case Some(app) => app.start()
-      case None => println("Error!")
+object App extends CommandApp(
+  name = "md-gh-linker",
+  header = "Formats the links for github issues by number",
+  main = {
+    val repoOpt = Opts.option[String]("repo", short = "r", help = "Set name of the repository")
+    val userOpt = Opts.option[String]("user", short = "u", help = "Set user name")
+
+    (repoOpt, userOpt).mapN { (repo, user) =>
+      new App(user, repo).start()
     }
-
   }
-}
+)
 
 class App(user: String, repo: String) {
   def start(): Unit = {
