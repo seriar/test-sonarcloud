@@ -14,7 +14,7 @@ class App(user: String, repo: String) {
   def start(): Unit = {
     var exit: Boolean = false
     while (!exit) {
-      val input = scala.io.StdIn.readLine("Provide issue id:")
+      val input = scala.io.StdIn.readLine("Provide issue id (or q to exit):")
       if (input == "q") {
         exit = true
       } else {
