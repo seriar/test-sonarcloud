@@ -13,7 +13,7 @@ object App extends CommandApp(
     }
   }
 )
-
+// just some change to test commit message
 class App(user: String, repo: String) {
   def start(): Unit = {
     var exit: Boolean = false
